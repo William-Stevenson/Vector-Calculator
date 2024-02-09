@@ -23,70 +23,78 @@ namespace Vector_Calculator
             return $"<{x}, {y}, {z}>";
         }
 
+        //Functional
         public float GetMagnitude()
         {
-            // ADD CODE HERE, THEN REMOVE BELOW LINE
-            throw new NotImplementedException();
+            return (MathF.Sqrt((this.x * this.x) + (this.y * this.y) + (this.z *this.z) ));
         }
 
+        // Functional
         public float GetDirection()
         {
-            // ADD CODE HERE, THEN REMOVE BELOW LINE
-            throw new NotImplementedException();
+            double tangentVal = this.y / this.x;
+            double atanVal = Math.Atan(tangentVal);
+            float returnVal = (float)atanVal;
+            return returnVal;
         }
 
+        //Functional
         public static Vector Add(Vector v1, Vector v2)
         {
-            // ADD CODE HERE, THEN REMOVE BELOW LINE
-            throw new NotImplementedException();
+            return new Vector(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
         }
 
+        //Functional
         public static Vector Negate(Vector v)
         {
-            // ADD CODE HERE, THEN REMOVE BELOW LINE
-            throw new NotImplementedException();
+            return new Vector(-v.x, -v.y, -v.z);
         }
 
+        //Functional
         public static Vector Subtract(Vector v1, Vector v2)
         {
-            // ADD CODE HERE, THEN REMOVE BELOW LINE
-            throw new NotImplementedException();
+            return new Vector(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
         }
 
-        public static Vector Scale(Vector v)
+        //Functional
+        public static Vector Scale(Vector v, float scaleFactor)
         {
-            // ADD CODE HERE, THEN REMOVE BELOW LINE
-            throw new NotImplementedException();
+            return new Vector(v.x * scaleFactor, v.y * scaleFactor, v.z * scaleFactor);
         }
 
         public static Vector Normalize(Vector v)
         {
-            // ADD CODE HERE, THEN REMOVE BELOW LINE
-            throw new NotImplementedException();
+            float divideVal = v.GetMagnitude();
+            return new Vector(v.x / divideVal, v.y / divideVal, v.z / divideVal);
         }
 
         public static float DotProduct(Vector v1, Vector v2)
         {
-            // ADD CODE HERE, THEN REMOVE BELOW LINE
-            throw new NotImplementedException();
+            float returnVal = (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z);
+            return returnVal;
         }
 
         public static Vector CrossProduct(Vector v1, Vector v2)
         {
-            // ADD CODE HERE, THEN REMOVE BELOW LINE
-            throw new NotImplementedException();
+            float xVal = (v1.y * v2.z) - (v1.z * v2.y);
+            float yVal = (v1.z * v2.x) - (v1.x * v2.z);
+            float zVal = (v1.x * v2.y) - (v1.y * v2.x);
+            return new Vector(xVal, yVal, zVal);
         }
 
-        public static Vector AngleBetween(Vector v1, Vector v2)
+        public static float AngleBetween(Vector v1, Vector v2)
         {
-            // ADD CODE HERE, THEN REMOVE BELOW LINE
-            throw new NotImplementedException();
+            float magA = v1.GetMagnitude();
+            float magB = v2.GetMagnitude();
+            float interiorMath = Vector.DotProduct(v1, v2) / (magA * magB);
+            float theta = MathF.Acos(interiorMath);
+            return theta;
         }
 
         public static Vector ProjectOnto(Vector v1, Vector v2)
         {
-            // ADD CODE HERE, THEN REMOVE BELOW LINE
-            throw new NotImplementedException();
+            float scaleFactor = Vector.DotProduct(v1, v2) / (v2.GetMagnitude() * v2.GetMagnitude());
+            return Vector.Scale(v2, scaleFactor);
         }
     }
 }
